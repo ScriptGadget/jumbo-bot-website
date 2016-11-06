@@ -373,3 +373,48 @@ exports.postForgot = (req, res, next) => {
     res.redirect('/forgot');
   });
 };
+
+/**
+ * GET /memories
+ * 
+ * list all memories
+ */
+
+exports.getMemories = (req, res) => {
+    res.render('account/memories', {
+        title: 'Memories'
+    });
+};
+
+/**
+ * POST /account/memory/delete:index
+ * Delete user account.
+ */
+exports.postDeleteMemory = (req, res, next) => {
+    User.findById(req.user.id, (err, user) => {
+        if (err) { return next(err); }
+        console.log(user.email +" (" + req.params.index +")"+ ": " + user.memories[req.params.index]);
+        user.memories[req.params.index].remove();
+        user.save((err) => {
+            if (err) { return next(err); }    
+            req.flash('info', { msg: 'Memory forgotten.' });
+            res.redirect('/account/memories');
+        });
+    });
+};
+
+/**
+ * POST /account/memory
+ * Add a memory.
+ */
+exports.postMemory = (req, res, next) => {
+    User.findById(req.user.id, (err, user) => {
+        if (err) { return next(err); }
+        user.memories.push({text: req.body.memory});
+        user.save((err) => {
+            if (err) { return next(err); }    
+            req.flash('info', { msg: 'Memory added.' });
+            res.redirect('/account/memories');
+        });
+    });
+};

@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+
+  .page-header
+    h3 Memories
+
+  - var n = 0;
+  each memory in user.memories
+    - item = '' + memory.text
+      p: n
+        a.text-danger(href='/account/memory/forget/' + n++) x
+        |  #{memory.text}
+
+   
+  form.form-horizontal(action='/account/memory', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group
+      .col-sm-12
+        input.form-control(type='text', name='memory', id='memory', placeholder='Next time, left at Albuquerque...')
+    .form-group
+      .col-sm-3
+        button.btn.btn-primary(type='submit')
+          i.fa.fa-plus
+          | Add Memory
