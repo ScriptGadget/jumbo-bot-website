@@ -23,3 +23,16 @@ block content
         button.btn.btn-primary(type='submit')
           i.fa.fa-plus
           | Add Memory
+
+  p Upgrade Now
+
+  form(method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    script(
+    src='https://checkout.stripe.com/checkout.js',
+    class='stripe-button',
+    data-key=publishableKey,
+    data-image='/img/elephant.svg',
+    data-name='Jumbo Bot',
+    data-description='Starter Subscription ($4.99/mo)',
+    data-amount='499')
