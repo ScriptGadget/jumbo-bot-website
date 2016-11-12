@@ -1,6 +1,7 @@
 {
   "name": "hackathon-starter",
   "version": "4.2.1",
+  "description": "Jumbo Remembers",
   "repository": {
     "type": "git",
     "url": "https://github.com/sahat/hackathon-starter.git"
