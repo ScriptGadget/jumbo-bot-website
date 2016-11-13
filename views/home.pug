@@ -3,22 +3,15 @@ extends layout
 block content
   div.landing
     h1 Jumbo Bot
-    p.lead Never forget again.
+    p.lead Never Forget Again
     hr
     .row
-      .col-sm-6
+      .col-sm-12
         h2 Easy
-        p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-        p
-          a.btn.btn-default(href='#', role='button') View details »
-
-  form(method='POST')
-    input(type='hidden', name='_csrf', value=_csrf)
-    script(
-    src='https://checkout.stripe.com/checkout.js',
-    class='stripe-button',
-    data-key=publishableKey,
-    data-image='/img/elephant.svg',
-    data-name='Jumbo Bot',
-    data-description='Starter Subscription ($4.99/mo)',
-    data-amount='499')
+        p Tired of forgetting important things. Let Jumbo Bot remember for you!
+    hr
+    .row.col-sm-12.col-md-offset-5.col-md-3
+        a(href='/account/memories')
+          button.btn.btn-primary
+            i.fa.fa-plus
+            | Remember Something
